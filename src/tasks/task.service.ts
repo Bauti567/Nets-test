@@ -1,26 +1,37 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Query } from "@nestjs/common";
 
-// Reutilizar código
+
 @Injectable()
-export class TaskService{
+export class TaskService {
+    private tasks = [];
 
-    getTasks(){
-        return [1,2,3,"Arreglo"]
+    getAllTasks(){
+        return this.tasks
     }
 
-    createTasks(){
-
+    getTasks(id:number) {
+        return this.tasks.find(task => task.id === id)    
+       
     }
 
-    updateTask(){
-
+    createTasks(task: any) {
+        console.log(task);
+        this.tasks.push({
+            ...task,
+            id: this.tasks.length + 1 
+        }); // Corregido para evitar referencia circular
+        return task;
     }
 
-    updateTaskStatus(){
-        
+    updateTask() {
+        return 'Actualizando tarea';
     }
 
-    deleteTask(){
-        
+    updateTaskStatus() {
+        return 'Actualizando tarea STATUS';
+    }
+
+    deleteTask() {
+        return 'Eliminando tarea';
     }
 }
