@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, Param } from "@nestjs/common";
 import { TaskService } from "./task.service";
 import { query } from "express";
 
@@ -12,8 +12,10 @@ export class TaskController {
         return this.taskService.getAllTasks();
     }
 
-    @Get('/2')
-    getTask() {
+    @Get('/:id')
+    getTask(@Param() id: string) {
+        const taskFound = 
+        console.log(id)
         return this.taskService.getTasks(2);
     }
 
